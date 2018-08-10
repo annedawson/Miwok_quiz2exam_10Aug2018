@@ -18,7 +18,9 @@ package com.example.android.miwok;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,19 +48,12 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("ten");
 
         //Log.v("'\n' + NumbersActivity", "Word at index 0: " + words.get(0));
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
 
-        // Find the root view so we can add child views to it
-        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-        // as long as the current index position is less than the length of the list).
-        // The index variable keeps track of our current position in the list and
-        // increments by 1 each time the code in the loop is executed.
-        for (int index = 0; index < words.size(); index++) {
-            // Create a new TextView
-            TextView wordView = new TextView(this);
-            // Set the text to be word at the current index
-            wordView.setText(words.get(index));
-            // Add this TextView as another child to the root view of this layout
-            rootView.addView(wordView);
-            }
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(itemsAdapter);
+
+
     }
 }
